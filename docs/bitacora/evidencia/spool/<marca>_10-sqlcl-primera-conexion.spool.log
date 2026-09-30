@@ -1,0 +1,26 @@
+USER is "SYSTEM"
+CON_NAME 
+------------------------------
+FREEPDB1
+
+Error starting at line : 1 in command -
+SELECT banner_ful FROM v$version
+Error at Command Line : 1 Column : 8
+Error report -
+SQL Error: ORA-00904: "BANNER_FUL": invalid identifier
+Help: https://docs.oracle.com/error-help/db/ora-00904/
+
+BANNER_FULL                                                                            
+______________________________________________________________________________________ 
+Oracle AI Database 26ai Free Release 23.26.3.0.0 - Develop, Learn, and Run for Free    
+Version 23.26.3.0.0                                                                    
+
+
+USERNAME           ACCOUNT_STATUS    
+__________________ _________________ 
+ADMIN_ACADEMIA     OPEN              
+ADMIN_CLINICA      OPEN              
+ADMIN_FINTECH      OPEN              
+ADMIN_LOGISTICA    OPEN              
+ADMIN_RETAIL       OPEN              
+
