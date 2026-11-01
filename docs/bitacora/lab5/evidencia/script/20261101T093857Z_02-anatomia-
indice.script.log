@@ -1,0 +1,20 @@
+SP2-0734: unknown command beginning "rama y hoj..." - rest of line ignored.
+Help: https://docs.oracle.com/error-help/db/sp2-0734/
+SP2-0734: unknown command beginning "mantenimie..." - rest of line ignored.
+Help: https://docs.oracle.com/error-help/db/sp2-0734/
+
+===== 1. El diccionario: altura, hojas, claves distintas y factor de agrupamiento de cada índice de
+SP2-0734: unknown command beginning "TiendaSur ..." - rest of line ignored.
+Help: https://docs.oracle.com/error-help/db/sp2-0734/
+(altura = BLEVEL + 1: BLEVEL cuenta solo los niveles de ramas, sin las hojas)
+
+===== 2. Por dentro: ANALYZE INDEX ... VALIDATE STRUCTURE llena INDEX_STATS (una fila, la del último
+SP2-0734: unknown command beginning "análisis)..." - rest of line ignored.
+Help: https://docs.oracle.com/error-help/db/sp2-0734/
+ANALYZE INDEX tiendasur.ix_ped_cliente VALIDATE STRUCTURE
+                        *
+ERROR at line 1:
+ORA-01418: specified index does not exist
+Help: https://docs.oracle.com/error-help/db/ora-01418/
+
+

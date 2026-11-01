@@ -40,6 +40,20 @@ COLUMN con_name FORMAT A12
 COLUMN instance_name FORMAT A12
 COLUMN state FORMAT A8
 SELECT con_name, instance_name, state FROM dba_pdb_saved_states;
+PROMPT -- Si FREEPDB1 se quedó en MOUNTED (no había estado guardado), se abre y se guarda el estado para el próximo arranque
+SET SERVEROUTPUT ON
+DECLARE v VARCHAR2(10);
+BEGIN
+  SELECT open_mode INTO v FROM v$pdbs WHERE name = 'FREEPDB1';
+  IF v <> 'READ WRITE' THEN
+    EXECUTE IMMEDIATE 'ALTER PLUGGABLE DATABASE FREEPDB1 OPEN';
+    EXECUTE IMMEDIATE 'ALTER PLUGGABLE DATABASE FREEPDB1 SAVE STATE';
+    DBMS_OUTPUT.PUT_LINE('FREEPDB1 estaba ' || v || ': abierta y con SAVE STATE (repasa por qué no tenía estado guardado)');
+  ELSE
+    DBMS_OUTPUT.PUT_LINE('FREEPDB1 abierta sola en READ WRITE: el estado guardado funciona');
+  END IF;
+END;
+/
 PROMPT
 PROMPT ===== 5. ¿Dónde quedó escrito todo esto? (ADR y alert log) =====
 SELECT name, value FROM v$diag_info WHERE name IN ('ADR Home', 'Diag Trace', 'Default Trace File');
