@@ -3,7 +3,7 @@
 set -euo pipefail
 source scripts/deployment/env/00-config.sh
 echo "== 1. Procesos de la instancia FREE (docker top = ps dentro del contenedor) =="
-docker top "$CONT_NAME" -eo pid,user,rss,args | grep -E '(ora|db)_[a-z0-9]+_FREE' | head -15 || true
+docker top "$CONT_NAME" -eo pid,user,rss,args | grep -E '(ora|db)_[a-z0-9]+_FREE' | awk 'NR <= 15'
 echo "   ... total de procesos de background (db_*_FREE en 26ai; ora_*_FREE en versiones anteriores): $(docker top "$CONT_NAME" -eo pid,args | grep -cE ' (ora|db)_[a-z0-9]+_FREE')"
 echo "== 2. Procesos servidor (uno por sesión dedicada) y listener =="
 docker top "$CONT_NAME" -eo pid,user,args | grep -E 'oracleFREE|tnslsnr' || true
